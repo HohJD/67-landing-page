@@ -3,105 +3,541 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>67</title>
+    <title>67 — Move faster, think clearer</title>
+    <meta name="description" content="67 is the simplest way to move faster, think clearer, and get more done.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --brand: #e94560;
+            --brand-dark: #c23a51;
+            --brand-soft: #fff0f2;
+            --text: #16213e;
+            --text-secondary: #5a6a85;
+            --bg: #ffffff;
+            --bg-soft: #f8f9fb;
+            --bg-dark: #0f172a;
+            --radius: 1rem;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.12);
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: #1a1a2e;
+            color: var(--text);
+            background: var(--bg);
         }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-        header { background: #fff; border-bottom: 1px solid #eee; padding: 1rem 0; }
-        .logo { font-weight: 800; font-size: 1.5rem; color: #e94560; }
-        .hero {
-            text-align: center;
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
-            color: #fff;
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
-        .hero h1 { font-size: 4rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem; opacity: 0.9; }
-        .cta {
-            display: inline-block;
-            background: #e94560;
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4rem;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--brand);
+            letter-spacing: -0.04em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.55rem 1.25rem;
+            background: var(--text);
             color: #fff;
-            padding: 0.9rem 2rem;
             border-radius: 999px;
-            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .nav-cta:hover { background: var(--brand); color: #fff; }
+
+        /* Hero */
+        .hero {
+            padding: 5rem 0 6rem;
+            text-align: center;
+            background:
+                radial-gradient(circle at 120% 0%, rgba(233, 69, 96, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at -10% 100%, rgba(15, 23, 42, 0.06) 0%, transparent 40%),
+                var(--bg);
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.9rem;
+            margin-bottom: 1.25rem;
+            background: var(--brand-soft);
+            color: var(--brand);
+            border-radius: 999px;
+            font-size: 0.85rem;
             font-weight: 600;
         }
-        .cta:hover { background: #c23a51; }
-        .section { padding: 4rem 0; }
-        .section-title { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-        .feature { padding: 1.5rem; border-radius: 1rem; background: #f8f9fa; }
-        .feature h3 { margin-bottom: 0.5rem; color: #0f3460; }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-        .testimonial { padding: 1.5rem; border-radius: 1rem; background: #f8f9fa; }
-        .testimonial p { font-style: italic; margin-bottom: 1rem; }
-        .testimonial .author { font-weight: 700; color: #0f3460; }
-        footer { background: #16213e; color: #fff; text-align: center; padding: 2rem 0; }
+        .hero h1 {
+            font-size: clamp(2.6rem, 6vw, 4.2rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 860px;
+            margin: 0 auto 1.25rem;
+        }
+        .hero p {
+            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto 2rem;
+        }
+        .button-group {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.9rem 1.8rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary {
+            background: var(--brand);
+            color: #fff;
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
+        }
+        .btn-primary:hover { background: var(--brand-dark); }
+        .btn-secondary {
+            background: #fff;
+            color: var(--text);
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
+        }
+        .btn-secondary:hover { border-color: rgba(0,0,0,0.15); }
+
+        .hero-visual {
+            margin-top: 3.5rem;
+            padding: 2rem;
+            background: linear-gradient(145deg, #0f172a, #16213e);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            color: #fff;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            text-align: left;
+        }
+        .metric .value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+        .metric .label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Sections */
+        .section { padding: 5rem 0; }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            letter-spacing: -0.02em;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* Logo cloud */
+        .logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0.6;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Features */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            padding: 1.75rem;
+            background: var(--bg);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease;
+        }
+        .card:hover { transform: translateY(-4px); }
+        .icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            background: var(--brand-soft);
+            color: var(--brand);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* Testimonials */
+        .bg-soft { background: var(--bg-soft); }
+        .quote p {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        .quote .author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--brand-soft);
+            color: var(--brand);
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .author-info span { display: block; }
+        .author-info .role { font-size: 0.85rem; color: var(--text-secondary); font-weight: 400; }
+
+        /* Pricing */
+        .pricing-card { text-align: center; padding: 2rem; }
+        .pricing-card .plan { font-weight: 700; margin-bottom: 0.25rem; }
+        .pricing-card .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-card .price span {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .pricing-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+            display: inline-block;
+        }
+        .pricing-card li {
+            padding: 0.35rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .pricing-card.featured {
+            border: 2px solid var(--brand);
+            position: relative;
+        }
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand);
+            color: #fff;
+            padding: 0.25rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* CTA banner */
+        .cta-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #16213e 100%);
+            color: #fff;
+            text-align: center;
+            border-radius: var(--radius);
+            padding: 4rem 1.5rem;
+            margin: 0 1.5rem;
+            max-width: 1100px;
+        }
+        .cta-banner h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 1rem; }
+        .cta-banner p { color: rgba(255,255,255,0.8); max-width: 540px; margin: 0 auto 1.5rem; }
+
+        /* Footer */
+        footer {
+            background: var(--bg-dark);
+            color: rgba(255,255,255,0.65);
+            padding: 3rem 0 2rem;
+            font-size: 0.9rem;
+        }
+        footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        footer .logo { margin-bottom: 0.5rem; }
+        footer a:hover { color: #fff; }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .nav-links a:not(.nav-cta) { display: none; }
+            .hero { padding: 3.5rem 0 4.5rem; }
+            .section { padding: 3.5rem 0; }
+            .cta-banner { margin: 0; border-radius: 0; }
+        }
     </style>
 </head>
 <body>
-    <header>
+    <nav class="nav">
         <div class="container">
-            <div class="logo">67</div>
+            <a href="#" class="logo">67</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#testimonials">Stories</a>
+                <a href="#" class="nav-cta">Get started</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <span class="eyebrow">Now in early access</span>
+            <h1>The simplest way to move faster, think clearer, and get more done.</h1>
+            <p>67 brings your goals, tasks, and team into one focused workspace so you can spend less time managing work and more time doing it.</p>
+            <div class="button-group">
+                <a href="#" class="btn btn-primary">Start free trial</a>
+                <a href="#" class="btn btn-secondary">Watch demo</a>
+            </div>
+
+            <div class="hero-visual">
+                <div class="metric"><div class="value">2x</div><div class="label">Faster delivery</div></div>
+                <div class="metric"><div class="value">30%</div><div class="label">Fewer meetings</div></div>
+                <div class="metric"><div class="value">10k+</div><div class="label">Active teams</div></div>
+                <div class="metric"><div class="value">99.9%</div><div class="label">Uptime</div></div>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
+    <section class="section">
         <div class="container">
-            <h1>67</h1>
-            <p>The simplest way to move faster, think clearer, and get more done.</p>
-            <a href="#" class="cta">Get started</a>
+            <p class="section-subtitle">Trusted by forward-thinking teams at</p>
+            <div class="logos">
+                <span>Acme Corp</span>
+                <span>BrightPath</span>
+                <span>Nebula Labs</span>
+                <span>Factorly</span>
+                <span>Orbita</span>
+            </div>
         </div>
     </section>
 
-    <section class="section features">
+    <section id="features" class="section bg-soft">
         <div class="container">
-            <h2 class="section-title">Features</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>Fast</h3>
-                    <p>Built for speed from the ground up so you never wait on your tools.</p>
+            <h2 class="section-title">Everything you need to stay in flow</h2>
+            <p class="section-subtitle">A focused toolkit that removes friction from planning, execution, and review.</p>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <h3>Lightning fast</h3>
+                    <p>Optimized from the ground up so your workspace loads instantly and keeps up with your ideas.</p>
                 </div>
-                <div class="feature">
-                    <h3>Focused</h3>
-                    <p>Distraction-free interface that keeps your most important work front and center.</p>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <h3>Distraction-free focus</h3>
+                    <p>Cut the noise with a clean interface that surfaces what matters and hides everything else.</p>
                 </div>
-                <div class="feature">
-                    <h3>Flexible</h3>
-                    <p>Adapts to your workflow, whether you are a team of one or one hundred.</p>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Built for teams</h3>
+                    <p>Scales with you from solo builder to multi-team org without adding complexity.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </div>
+                    <h3>Clear analytics</h3>
+                    <p>See progress at a glance with simple, actionable insights that help you ship better.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <h3>Smart scheduling</h3>
+                    <p>Plan your weeks in seconds and protect deep work with intelligent time blocking.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Bank-grade security</h3>
+                    <p>Your data is encrypted, backed up, and stays yours. Privacy is not an afterthought.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section testimonials">
+    <section id="testimonials" class="section">
         <div class="container">
-            <h2 class="section-title">What people say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial">
+            <h2 class="section-title">Loved by focused teams</h2>
+            <p class="section-subtitle">See why teams switch to 67 and never look back.</p>
+            <div class="grid-3">
+                <div class="card quote">
                     <p>"67 changed how our team operates. We shipped more in two weeks than the previous quarter."</p>
-                    <div class="author">&mdash; Alex R.</div>
+                    <div class="author">
+                        <div class="avatar">AR</div>
+                        <div class="author-info">
+                            <span>Alex R.</span>
+                            <span class="role">Engineering Lead, BrightPath</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial">
+                <div class="card quote">
                     <p>"Clean, intuitive, and exactly what we needed. No bloat, just results."</p>
-                    <div class="author">&mdash; Jamie L.</div>
+                    <div class="author">
+                        <div class="avatar">JL</div>
+                        <div class="author-info">
+                            <span>Jamie L.</span>
+                            <span class="role">Founder, Nebula Labs</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial">
+                <div class="card quote">
                     <p>"The best tool I have added to my workflow this year. Highly recommended."</p>
-                    <div class="author">&mdash; Morgan S.</div>
+                    <div class="author">
+                        <div class="avatar">MS</div>
+                        <div class="author-info">
+                            <span>Morgan S.</span>
+                            <span class="role">Product Manager, Acme Corp</span>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section bg-soft">
+        <div class="container">
+            <h2 class="section-title">Simple, transparent pricing</h2>
+            <p class="section-subtitle">Start free. Upgrade when 67 becomes part of your daily workflow.</p>
+            <div class="grid-3">
+                <div class="card pricing-card">
+                    <div class="plan">Starter</div>
+                    <div class="price">$0<span>/mo</span></div>
+                    <p>For individuals getting started.</p>
+                    <ul>
+                        <li>Up to 3 projects</li>
+                        <li>Basic analytics</li>
+                        <li>7-day history</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width:100%;justify-content:center;">Get started</a>
+                </div>
+                <div class="card pricing-card featured">
+                    <div class="badge">Most popular</div>
+                    <div class="plan">Pro</div>
+                    <div class="price">$12<span>/mo</span></div>
+                    <p>For professionals and growing teams.</p>
+                    <ul>
+                        <li>Unlimited projects</li>
+                        <li>Advanced analytics</li>
+                        <li>Unlimited history</li>
+                        <li>Priority support</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;">Start free trial</a>
+                </div>
+                <div class="card pricing-card">
+                    <div class="plan">Enterprise</div>
+                    <div class="price">Custom</div>
+                    <p>For organizations with advanced needs.</p>
+                    <ul>
+                        <li>SAML SSO</li>
+                        <li>Dedicated success manager</li>
+                        <li>SLA &amp; security reviews</li>
+                        <li>On-premise option</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary" style="width:100%;justify-content:center;">Contact sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="display:flex;justify-content:center;">
+        <div class="cta-banner">
+            <h2>Ready to move faster?</h2>
+            <p>Join thousands of teams already using 67 to focus on what matters most.</p>
+            <div class="button-group">
+                <a href="#" class="btn btn-primary">Start free trial</a>
+                <a href="#" class="btn btn-secondary" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);">Talk to sales</a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 67. All rights reserved.</p>
+            <div>
+                <div class="logo">67</div>
+                <p>&copy; 2026 67. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
         </div>
     </footer>
 </body>
